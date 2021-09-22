@@ -18,9 +18,7 @@ sp = spotipy.Spotify(client_credentials_manager
 =
 client_credentials_manager)
 
-df = pd.read_csv('spotifyfeatures.csv')
-df = df.drop_duplicates(subset=['track_id'])
-
+df = pd.read_csv('fourtet.csv')
 
 def find_song(name, artist):
     """
@@ -114,9 +112,9 @@ def recommend_songs(song_list, spotify_data, n_songs=10):
     song_dict = flatten_dict_list(song_list)
 
     song_center = get_mean_vector(song_list, spotify_data)
-    spotify_data = spotify_data.drop(['popularity', 'key', 'mode', 'time_signature'], axis=1)
+    spotify_data = spotify_data.drop(['popularity', 'Unnamed: 0'], axis=1)
     X = spotify_data.select_dtypes(np.number)
-    cluster_pipeline = Pipeline([('scaler', StandardScaler()), ('kmeans', KMeans(n_clusters=10))])
+    cluster_pipeline = Pipeline([('scaler', StandardScaler()), ('kmeans', KMeans(n_clusters=5))])
     cluster_pipeline.fit(X)
     cluster_labels = cluster_pipeline.predict(X)
     spotify_data['cluster'] = cluster_labels

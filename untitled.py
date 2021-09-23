@@ -129,43 +129,50 @@ def recommend_songs(song_list, spotify_data, n_songs=10):
     df_recs = pd.DataFrame(rec_songs[metadata_cols])
     return df_recs
 
-song_list = [{'name': 'Willow', 'artist': 'Taylor Swift'}, {'name': 'Cardigan', 'artist': 'Taylor Swift'}]
-st.write(recommend_songs(song_list, df, 10))
+title = st.text_input('Song')
+artist = st.text_input('Artist')
+if title and artist:
+    song_list = [{'name': title, 'artist': artist}]
+    st.write(recommend_songs(song_list, df, 10))
+
+button = st.button('Update features manually')
 
 def user_input_features():
-    danceability = st.sidebar.slider('Danceability', 0, 100, 70, 5)
-    energy = st.sidebar.slider('Energy', 0, 100, 90, 5)
-    acousticness = st.sidebar.slider('Acousticness', 0, 100, 50, 5)
-    instrumentalness = st.sidebar.slider('Instrumentalness', 0, 100, 25, 5)
-    liveness = st.sidebar.slider('Liveness', 0, 100, 80, 5)
-    loudness = st.sidebar.slider('Loudness', 0, 100, 25, 5)
-    speechiness = st.sidebar.slider('Speechiness', 0, 100, 75, 5)
-    tempo = st.sidebar.slider('Tempo', 0, 100, 25, 5)
-    valence = st.sidebar.slider('Valence', 0, 100, 20, 5)
+    danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
+    energy = st.sidebar.slider('Energy', 0.000281, 0.999000, 0.000281, 0.01)
+    acousticness = st.sidebar.slider('Acousticness', 0.000002, 0.996000, 0.000002, 0.01)
+    instrumentalness = st.sidebar.slider('Instrumentalness', 0.000000, 0.984000, 0.000000, 0.01)
+    liveness = st.sidebar.slider('Liveness', 0.020600, 0.993000, 0.020600, 0.01)
+    loudness = st.sidebar.slider('Loudness', -37.114000, -1.987000, -37.114000, 0.1)
+    speechiness = st.sidebar.slider('Speechiness', 0.000000, 0.947000, 0.000000, 0.01)
+    tempo = st.sidebar.slider('Tempo', 0.000000, 210.029000, 0.000000, 1.0)
+    valence = st.sidebar.slider('Valence', 0.000000, 0.996000, 0.000000, 0.01)
 
     user_data = {'danceability': danceability,
-                 'energy': energy,
-                 'acousticness': acousticness,
-                 'instrumentalness': instrumentalness,
-                 'liveness': liveness,
-                 'loudness': loudness,
-                 'speechiness': speechiness,
-                 'tempo': tempo,
-                 'valence': valence}
+                'energy': energy,
+                'acousticness': acousticness,
+                'instrumentalness': instrumentalness,
+                'liveness': liveness,
+                'loudness': loudness,
+                'speechiness': speechiness,
+                'tempo': tempo,
+                'valence': valence}
 
     features = pd.DataFrame(user_data, index=[0])
     return features
 
 df_user = user_input_features()
-df_user
+if button:
+    df_user
 
-df3 = pd.DataFrame()
-for k, v in df_user.iterrows():
-    i = ((df['danceability']-v['danceability']) * \
-       (df['loudness']-v['loudness']) * \
-       (df['valence']-v['valence'])).abs().idxmin()
-    df3 = df3.append(df.loc[i])
-df3
+    df3 = pd.DataFrame()
+    for k, v in df_user.iterrows():
+        i = ((df['danceability']-v['danceability']) * \
+           (df['loudness']-v['loudness']) * \
+           (df['valence']-v['valence'])).abs().idxmin()
+        df3 = df3.append(df.loc[i])
+        df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
+    df3
 
-new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
-st.write(recommend_songs(new_song_list, df, 10))
+    new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
+    st.write(recommend_songs(new_song_list, df, 10))

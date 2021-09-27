@@ -7,7 +7,7 @@ from sklearn.pipeline import Pipeline
 import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
-import plotly.express as px
+import plotly.graph_objects as go
 from collections import defaultdict
 from scipy.spatial.distance import cdist
 import time
@@ -136,7 +136,9 @@ title = st.text_input('Song')
 artist = st.text_input('Artist')
 if title and artist:
     song_list = [{'name': title, 'artist': artist}]
-    st.write(recommend_songs(song_list, df, 10))
+    song_recs = recommend_songs(song_list, df, 10)
+    st.dataframe(song_recs.assign(hack='').set_index('hack'))
+    #st.write(recommend_songs(song_list, df, 10))
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -180,7 +182,6 @@ if button:
             (df['valence'] - v['valence'])).abs().idxmin()
         df3 = df3.append(df.loc[i])
         df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
-    st.write('Song: ', df3.iloc[0]['track_name'], 'by ', df3.iloc[0]['artist_name'])
-
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
-    st.write(recommend_songs(new_song_list, df, 10))
+    new_song_recs = recommend_songs(new_song_list, df, 10)
+    st.dataframe(new_song_recs.assign(hack2='').set_index('hack2'))

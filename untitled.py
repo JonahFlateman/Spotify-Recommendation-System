@@ -11,8 +11,8 @@ import plotly.express as px
 from collections import defaultdict
 from scipy.spatial.distance import cdist
 import time
-cid = '41ef3d43ab644b70b02c5cd59c863774'
-secret = 'e6dc9a5208a04977991022b24a1bb6fe'
+cid = 'YOUR CLIENT ID'
+secret = 'YOUR CLIENT SECRET'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager
 =
@@ -129,13 +129,14 @@ def recommend_songs(song_list, spotify_data, n_songs=10):
     df_recs = pd.DataFrame(rec_songs[metadata_cols])
     return df_recs
 
+st.title('10 recommendations from Four Tet')
+st.text('Fill in a song and artist of your choice, or use the sidebar to adjust features.')
+
 title = st.text_input('Song')
 artist = st.text_input('Artist')
 if title and artist:
     song_list = [{'name': title, 'artist': artist}]
     st.write(recommend_songs(song_list, df, 10))
-
-button = st.button('Update features manually')
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -161,18 +162,25 @@ def user_input_features():
     features = pd.DataFrame(user_data, index=[0])
     return features
 
-df_user = user_input_features()
-if button:
-    df_user
 
+
+df_user = user_input_features()
+button = st.sidebar.button('Recommend Songs')
+if button:
     df3 = pd.DataFrame()
     for k, v in df_user.iterrows():
         i = ((df['danceability']-v['danceability']) * \
-           (df['loudness']-v['loudness']) * \
-           (df['valence']-v['valence'])).abs().idxmin()
+            (df['energy']-v['energy']) * \
+            (df['acousticness']-v['acousticness']) * \
+            (df['instrumentalness'] - v['instrumentalness']) * \
+            (df['liveness'] - v['liveness']) * \
+            (df['loudness'] - v['loudness']) * \
+            (df['speechiness'] - v['speechiness']) * \
+            (df['tempo'] - v['tempo']) * \
+            (df['valence'] - v['valence'])).abs().idxmin()
         df3 = df3.append(df.loc[i])
         df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
-    df3
+    st.write('Song: ', df3.iloc[0]['track_name'], 'by ', df3.iloc[0]['artist_name'])
 
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
     st.write(recommend_songs(new_song_list, df, 10))

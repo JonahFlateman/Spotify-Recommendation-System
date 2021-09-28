@@ -1,6 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import streamlit as st
+import streamlit.components.v1 as components
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
@@ -101,7 +102,7 @@ def flatten_dict_list(dict_list):
     return flattened_dict
 
 
-def recommend_songs(song_list, spotify_data, n_songs=10):
+def recommend_songs(song_list, spotify_data, n_songs=5):
     """
     Recommends songs based on a list of previous songs that a user has listened to.
     """
@@ -129,16 +130,34 @@ def recommend_songs(song_list, spotify_data, n_songs=10):
     df_recs = pd.DataFrame(rec_songs[metadata_cols])
     return df_recs
 
-st.title('10 recommendations from Four Tet')
-st.text('Fill in a song and artist of your choice, or use the sidebar to adjust features.')
+st.title('Five recommendations from Four Tet')
+st.write('## What is this?')
+st.write('Generate five recommendations from British DJ and producer Kieran Hebden, aka Four Tet, '
+         'based on his popular Spotify playlist.')
+
+components.iframe("https://open.spotify.com/embed/playlist/2uzbATYxs9V8YQi5lf89WG", width=700, height=300)
+
+st.write('## How does it work?')
+st.write('Fill in a song and artist of your choice, or use the sidebar to adjust features.')
 
 title = st.text_input('Song')
 artist = st.text_input('Artist')
 if title and artist:
     song_list = [{'name': title, 'artist': artist}]
-    song_recs = recommend_songs(song_list, df, 10)
-    st.dataframe(song_recs.assign(hack='').set_index('hack'))
-    #st.write(recommend_songs(song_list, df, 10))
+    song_recs = recommend_songs(song_list, df, 5)
+    for i, j in song_recs.itertuples(index=False):
+        try:
+            results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
+            results_list = results['tracks']['items'][0]['external_urls']['spotify']
+        except IndexError:
+            pass
+        st.write(results_list)
+        #components.iframe(results_list, width=400, height=200)
+        #components.iframe(results_list, width=400, height=200)
+        #st.write(results['tracks']['items'][0]['external_urls']['spotify'])
+        # results_list.append(results['tracks']['items'][0]['external_urls']['spotify'])
+        #components.iframe(results_list[0], width=700, height=300)
+        #st.dataframe(song_recs.assign(hack='').set_index('hack'))
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -183,5 +202,46 @@ if button:
         df3 = df3.append(df.loc[i])
         df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
-    new_song_recs = recommend_songs(new_song_list, df, 10)
-    st.dataframe(new_song_recs.assign(hack2='').set_index('hack2'))
+    new_song_recs = recommend_songs(new_song_list, df, 5)
+    for i, j in new_song_recs.itertuples(index=False):
+        try:
+            results2 = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
+            results_list2 = results2['tracks']['items'][0]['external_urls']['spotify']
+        except IndexError:
+            pass
+        st.write(results_list2)
+    #st.dataframe(new_song_recs.assign(hack2='').set_index('hack2'))
+
+st.markdown('**Feature Descriptions**')
+st.markdown('**Danceability** describes how suitable a track is for dancing based '
+            'on a combination of musical elements including tempo, rhythm stability, beat strength, and '
+            'overall regularity. A value of 0.0 is least danceable and 1.0 is most danceable.')
+st.markdown('**Energy** is a measure from 0.0 to 1.0 and represents a perceptual measure of intensity and '
+            'activity. Typically, energetic tracks feel fast, loud, and noisy. For example, death metal '
+            'has high energy, while a Bach prelude scores low on the scale. Perceptual features '
+            'contributing to this attribute include dynamic range, perceived loudness, timbre, onset rate, '
+            'and general entropy.')
+st.markdown('**Acousticness** is a confidence measure from 0.0 to 1.0 of whether the track is acoustic. 1.0 '
+            'represents high confidence the track is acoustic.')
+st.markdown("**Instrumentalness** predicts whether a track contains no vocals. 'Ooh' and 'ahh' sounds are treated "
+            "as instrumental in this context. Rap or spoken word tracks are clearly 'vocal'. The closer the "
+            "instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. "
+            "Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the "
+            "value approaches 1.0.")
+st.markdown('**Liveness** detects the presence of an audience in the recording. Higher liveness values represent '
+            'an increased probability that the track was performed live. A value above 0.8 provides strong '
+            'likelihood that the track is live.')
+st.markdown('**Loudness** is the overall loudness of a track in decibels (dB). Loudness values are averaged '
+            'across the entire track and are useful for comparing relative loudness of tracks. Loudness is '
+            'the quality of a sound that is the primary psychological correlate of physical strength (amplitude). '
+            'Values typical range between -60 and 0 db.')
+st.markdown('**Speechiness** detects the presence of spoken words in a track. The more exclusively speech-like '
+            'the recording (e.g. talk show, audio book, poetry), the closer to 1.0 the attribute value. Values '
+            'above 0.66 describe tracks that are probably made entirely of spoken words. Values between 0.33 and '
+            '0.66 describe tracks that may contain both music and speech, either in sections or layered, including '
+            'such cases as rap music. Values below 0.33 most likely represent music and other non-speech-like tracks.')
+st.markdown('**Tempo** is the overall estimated tempo of a track in beats per minute (BPM). In musical terminology, '
+            'tempo is the speed or pace of a given piece and derives directly from the average beat duration.')
+st.markdown('**Valence** is a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. '
+            'Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with '
+            'low valence sound more negative (e.g. sad, depressed, angry).')

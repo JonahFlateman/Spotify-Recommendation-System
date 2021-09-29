@@ -130,34 +130,36 @@ def recommend_songs(song_list, spotify_data, n_songs=5):
     df_recs = pd.DataFrame(rec_songs[metadata_cols])
     return df_recs
 
-st.title('Five recommendations from Four Tet')
-st.write('## What is this?')
-st.write('Generate five recommendations from British DJ and producer Kieran Hebden, aka Four Tet, '
+st.title('Recommendations from Four Tet')
+st.write('Generate song recommendations from DJ and producer Four Tet, '
          'based on his popular Spotify playlist.')
 
 components.iframe("https://open.spotify.com/embed/playlist/2uzbATYxs9V8YQi5lf89WG", width=700, height=300)
 
-st.write('## How does it work?')
+st.write('## How It Works')
 st.write('Fill in a song and artist of your choice, or use the sidebar to adjust features.')
 
 title = st.text_input('Song')
 artist = st.text_input('Artist')
 if title and artist:
     song_list = [{'name': title, 'artist': artist}]
-    song_recs = recommend_songs(song_list, df, 5)
+    try:
+        song_recs = recommend_songs(song_list, df, 5)
+    except ValueError:
+        st.markdown('**Song not found in Spotify, please try again**')
     for i, j in song_recs.itertuples(index=False):
+        embed_string = 'https://open.spotify.com/embed/track/'
+        id_list = []
         try:
             results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
-            results_list = results['tracks']['items'][0]['external_urls']['spotify']
+            id_list.append(results['tracks']['items'][0]['id'])
         except IndexError:
             pass
-        st.write(results_list)
-        #components.iframe(results_list, width=400, height=200)
-        #components.iframe(results_list, width=400, height=200)
-        #st.write(results['tracks']['items'][0]['external_urls']['spotify'])
-        # results_list.append(results['tracks']['items'][0]['external_urls']['spotify'])
-        #components.iframe(results_list[0], width=700, height=300)
-        #st.dataframe(song_recs.assign(hack='').set_index('hack'))
+        concat_list = [embed_string + k for k in id_list]
+        try:
+            components.iframe(concat_list[0], width=700, height=300)
+        except IndexError:
+            pass
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -204,13 +206,18 @@ if button:
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
     new_song_recs = recommend_songs(new_song_list, df, 5)
     for i, j in new_song_recs.itertuples(index=False):
+        embed_string = 'https://open.spotify.com/embed/track/'
+        id_list = []
         try:
-            results2 = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
-            results_list2 = results2['tracks']['items'][0]['external_urls']['spotify']
+            results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
+            id_list.append(results['tracks']['items'][0]['id'])
         except IndexError:
             pass
-        st.write(results_list2)
-    #st.dataframe(new_song_recs.assign(hack2='').set_index('hack2'))
+        concat_list = [embed_string + k for k in id_list]
+        try:
+            components.iframe(concat_list[0], width=700, height=300)
+        except IndexError:
+            pass
 
 st.markdown('**Feature Descriptions**')
 st.markdown('**Danceability** describes how suitable a track is for dancing based '

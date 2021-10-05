@@ -12,6 +12,7 @@ import plotly.graph_objects as go
 from collections import defaultdict
 from scipy.spatial.distance import cdist
 import time
+
 cid = 'YOUR CLIENT ID'
 secret = 'YOUR CLIENT SECRET'
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
@@ -102,7 +103,7 @@ def flatten_dict_list(dict_list):
     return flattened_dict
 
 
-def recommend_songs(song_list, spotify_data, n_songs=5):
+def recommend_songs(song_list, spotify_data, n_songs=10):
     """
     Recommends songs based on a list of previous songs that a user has listened to.
     """
@@ -137,29 +138,7 @@ st.write('Generate song recommendations from DJ and producer Four Tet, '
 components.iframe("https://open.spotify.com/embed/playlist/2uzbATYxs9V8YQi5lf89WG", width=700, height=300)
 
 st.write('## How It Works')
-st.write('Fill in a song and artist of your choice, or use the sidebar to adjust features.')
-
-title = st.text_input('Song')
-artist = st.text_input('Artist')
-if title and artist:
-    song_list = [{'name': title, 'artist': artist}]
-    try:
-        song_recs = recommend_songs(song_list, df, 5)
-    except ValueError:
-        st.markdown('**Song not found in Spotify, please try again**')
-    for i, j in song_recs.itertuples(index=False):
-        embed_string = 'https://open.spotify.com/embed/track/'
-        id_list = []
-        try:
-            results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
-            id_list.append(results['tracks']['items'][0]['id'])
-        except IndexError:
-            pass
-        concat_list = [embed_string + k for k in id_list]
-        try:
-            components.iframe(concat_list[0], width=700, height=300)
-        except IndexError:
-            pass
+st.write('Fill in up to three songs and artist of your choice, or use the sidebar to adjust features.')
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -188,8 +167,8 @@ def user_input_features():
 
 
 df_user = user_input_features()
-button = st.sidebar.button('Recommend Songs')
-if button:
+button1 = st.sidebar.button('Recommend Songs')
+if button1:
     df3 = pd.DataFrame()
     for k, v in df_user.iterrows():
         i = ((df['danceability']-v['danceability']) * \
@@ -204,7 +183,7 @@ if button:
         df3 = df3.append(df.loc[i])
         df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
-    new_song_recs = recommend_songs(new_song_list, df, 5)
+    new_song_recs = recommend_songs(new_song_list, df, 10)
     for i, j in new_song_recs.itertuples(index=False):
         embed_string = 'https://open.spotify.com/embed/track/'
         id_list = []
@@ -218,6 +197,38 @@ if button:
             components.iframe(concat_list[0], width=700, height=300)
         except IndexError:
             pass
+
+song_list = []
+title = st.text_input('Song #1')
+artist = st.text_input('Artist #1')
+song_list.append({'name': title, 'artist': artist})
+title2 = st.text_input('Song #2')
+artist2 = st.text_input('Artist #2')
+song_list.append({'name': title2, 'artist': artist2})
+title3 = st.text_input('Song #3')
+artist3 = st.text_input('Artist #3')
+song_list.append({'name': title3, 'artist': artist3})
+button2 = st.button('Go')
+if button2:
+    try:
+        song_recs = recommend_songs(song_list, df, 10)
+    except ValueError:
+        st.markdown('**Song not found in Spotify, please try again**')
+    for i, j in song_recs.itertuples(index=False):
+        embed_string = 'https://open.spotify.com/embed/track/'
+        id_list = []
+        try:
+            results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
+            id_list.append(results['tracks']['items'][0]['id'])
+        except IndexError:
+            pass
+        concat_list = [embed_string + k for k in id_list]
+        try:
+            components.iframe(concat_list[0], width=700, height=300)
+        except IndexError:
+            pass
+
+
 
 st.markdown('**Feature Descriptions**')
 st.markdown('**Danceability** describes how suitable a track is for dancing based '

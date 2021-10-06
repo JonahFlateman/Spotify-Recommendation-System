@@ -22,4 +22,4 @@ This project entails building a recommendation system in Spotify which is deploy
 ## Navigating This Repository
 
 * [Retrieving Playlist](https://github.com/JonahFlateman/capstone/blob/main/fourtetplaylist.ipynb)
-* Using Spotipy to retrieve playlist tracks by creator and playlist URI, obtaining track ID and audio features and converting to DataFrame
+  Using Spotipy to retrieve playlist tracks by creator and playlist URI, obtaining track ID and audio features and converting to DataFrame

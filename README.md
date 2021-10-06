@@ -19,3 +19,6 @@ This project entails building a recommendation system in Spotify which is deploy
 * Embed Four Tet playlist in Streamlit, use sidebar to display audio features for adjusting and return closest match in dataset for recommendation
 * Add text boxes in Streamlit for up to three songs for user input, append track ID of results to Spotify URL for embedding
 
+## Navigating This Repository
+
+[fourtetplaylist.ipynb](https://github.com/JonahFlateman/capstone/blob/main/fourtetplaylist.ipynb) Using Spotipy to retrieve playlist tracks by creator and playlist URI, obtaining track ID and audio features and converting to DataFrame

@@ -21,5 +21,6 @@ This project entails building a recommendation system in Spotify which is deploy
 
 ## Navigating This Repository
 
-* [Retrieving Playlist](https://github.com/JonahFlateman/capstone/blob/main/fourtetplaylist.ipynb)
-  Using Spotipy to retrieve playlist tracks by creator and playlist URI, obtaining track ID and audio features and converting to DataFrame
+* [Navigating Spotify API](https://github.com/JonahFlateman/capstone/blob/main/fourtetplaylist.ipynb) - using Spotipy to retrieve playlist tracks by creator and playlist URI, obtaining track ID and audio features and converting to DataFrame
+* [Data Wrangling, Scaling, Modeling and Clustering](https://github.com/JonahFlateman/capstone/blob/main/fourtetclustering.ipynb) - isolating and scaling numeric features, using KMeans to cluster and Plotly to visualize
+* [Building Recommendation System](https://github.com/JonahFlateman/capstone/blob/main/fourtetrecommender.ipynb) - using model and Spotipy, retrieve tracks and calculate vectors and cosine distances to build recommender

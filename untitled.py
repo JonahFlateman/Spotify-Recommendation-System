@@ -116,7 +116,7 @@ def recommend_songs(song_list, spotify_data, n_songs=10):
     song_center = get_mean_vector(song_list, spotify_data)
     spotify_data = spotify_data.drop(['popularity', 'Unnamed: 0'], axis=1)
     X = spotify_data.select_dtypes(np.number)
-    cluster_pipeline = Pipeline([('scaler', StandardScaler()), ('kmeans', KMeans(n_clusters=5))])
+    cluster_pipeline = Pipeline([('scaler', StandardScaler()), ('kmeans', KMeans(n_clusters=3))])
     cluster_pipeline.fit(X)
     cluster_labels = cluster_pipeline.predict(X)
     spotify_data['cluster'] = cluster_labels

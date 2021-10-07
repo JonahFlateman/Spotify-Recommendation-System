@@ -27,3 +27,12 @@ This project entails building a recommendation system in Spotify which is deploy
 * [Data Wrangling, Scaling, Modeling and Clustering](https://github.com/JonahFlateman/capstone/blob/main/fourtetclustering.ipynb) - isolating and scaling numeric features using KMeans to cluster and Plotly to visualize, creating confusion matrix and LIME visualization of gradient boosted binary classification model
 * [Building Recommendation System](https://github.com/JonahFlateman/capstone/blob/main/fourtetrecommender.ipynb) - using model and Spotipy, retrieve tracks and calculate vectors and cosine distances to build recommender
 * [Streamlit App](https://github.com/JonahFlateman/capstone/blob/main/untitled.py) - code used for building web app, includes features for user input in text boxes and sidebar, description for audio features
+
+## Analysis
+
+### Obtaining Playlist Data
+[Spotipy](https://spotipy.readthedocs.io/en/2.19.0/) is a Python library which allows developers access to the Spotify Web API upon input of their Client ID and Client Secret (these can be obtained through [Spotify For Developers](https://developer.spotify.com/)). For the purposes of this project and to build a more niche recommendation system, the playlist we will be downloading contains 1,723 songs - however this process can be emulated with any Spotify playlist using the creator's username and playlist URI (obtainable in Spotify).
+
+### Clustering
+
+![Three Clusters](/images/threeclusters.png)

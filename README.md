@@ -35,4 +35,15 @@ This project entails building a recommendation system in Spotify which is deploy
 
 ### Clustering
 
-![Three Clusters](/images/threeclusters.png)
+<img src="/images/threeclusters.png" width="400" height="300"/> <img src="/images/twoclusters.png" width="400" height="300"/>
+
+Our final model used KMeans with three clusters, however the data points of a similar two-cluster model are an intriguing starting place for a classification model with an emphasis on feature importances. Our final model using SMOTE and GradientBoostingClassifier gives us 97.2% accuracy on the test set and identifes its feature importances as:
+
+<img src="/images/featureimportances.png" width="400" height="300"/> <img src="/images/confusionmatrix.png" width="400" height="300"/>
+<img src="/images/limevisual.png" width="800" height="300"/>
+
+Energy, Danceability, and Acousticness are the highest; for our recommendation system and especially in the Streamlit app we will want a way to highlight how these features affect our results output to the user.
+
+
+
+

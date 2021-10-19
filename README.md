@@ -33,6 +33,23 @@ This project entails building a recommendation system in Spotify which is deploy
 ### Obtaining Playlist Data
 [Spotipy](https://spotipy.readthedocs.io/en/2.19.0/) is a Python library which allows developers access to the Spotify Web API upon input of their Client ID and Client Secret (these can be obtained through [Spotify For Developers](https://developer.spotify.com/)). For the purposes of this project and to build a more niche recommendation system, the playlist we will be downloading contains 1,723 songs - however this process can be emulated with any Spotify playlist using the creator's username and playlist URI (obtainable in Spotify).
 
-### Clustering
+### Clustering and Modeling
 
-![Three Clusters](/images/threeclusters.png)
+<img src="/images/threeclusters.png" width="400" height="300"/> <img src="/images/twoclusters.png" width="400" height="300"/>
+
+Our final model used KMeans with three clusters, however the data points of a similar two-cluster model are an intriguing starting place for a classification model with an emphasis on feature importances. Our final model using SMOTE and GradientBoostingClassifier gives us 97.2% accuracy on the test set and identifes its feature importances as:
+
+<img src="/images/featureimportances.png" width="400" height="300"/> <img src="/images/confusionmatrix.png" width="400" height="300"/>
+<img src="/images/limevisual.png" width="800" height="300"/>
+
+Energy, Danceability, and Acousticness are the highest; for our recommendation system and especially in the Streamlit app we will want a way to highlight how these features affect our results output to the user.
+
+### Building and Deploying a Recommendation System
+
+Our recommendation system obtains data for one or multiple songs with either Spotipy or from a dataset provided by the user. Separating out columns for our audio features, we calculate the mean vector of our song list as our "song center" and use cosine distance to find best matches to return as a DataFrame. The end result is a user-input song or song list returning n number of recommendations.
+
+In Streamlit the model can give recommendations in two ways. First a user has the option to adjust audio features manually using a sidebar, the app will take the nearest match for its input and provide the recommendation. A user may also enter up to three songs and the code will execute. In both cases the Spotify-embedded tracks will return and the user can listen in-app.
+
+
+
+

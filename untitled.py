@@ -23,23 +23,23 @@ client_credentials_manager)
 df = pd.read_csv('fourtet.csv')
 
 def find_song(name, artist):
-    """
-    This function returns a dataframe with data for a song given the name and artist.
-    The function uses Spotipy to fetch audio features and metadata for the specified song.
-
-    """
-
+    # Initialize an empty dictionary to store features and values
     song_data = defaultdict()
+
+    # Using Spotipy search function for track and artist, returning None if cannot be found in Spotify
     results = sp.search(q='track: {} artist: {}'.format(name,
                                                         artist), limit=1)
     if results['tracks']['items'] == []:
         return None
 
+    # Isolating track information and ID from results
     results = results['tracks']['items'][0]
-
     track_id = results['id']
+
+    # Obtaining audio features
     audio_features = sp.audio_features(track_id)[0]
 
+    # Preparing columns and converting to DataFrame
     song_data['name'] = [name]
     song_data['artist'] = [artist]
     song_data['explicit'] = [int(results['explicit'])]
@@ -53,11 +53,7 @@ def find_song(name, artist):
 
 
 def get_song_data(song, spotify_data):
-    """
-    Gets the song data for a specific song. The song argument takes the form of a dictionary with
-    key-value pairs for the name and release year of the song.
-    """
-
+    # Function will attempt to find ID track name and artist from dataset to return track data
     try:
         song_data = spotify_data[(spotify_data['track_name'] == song['name'])
                                  & (spotify_data['artist_name'] == song['artist'])].iloc[0]
@@ -68,66 +64,59 @@ def get_song_data(song, spotify_data):
 
 
 def get_mean_vector(song_list, spotify_data):
-    """
-    Gets the mean vector for a list of songs.
-    """
-
+    # Initialize empty list to store vectors
     song_vectors = []
+
+    # Identify audio features columns
     number_cols = ['valence', 'acousticness', 'danceability', 'duration_ms', 'energy', 'instrumentalness', 'liveness',
                    'loudness', 'speechiness', 'tempo']
+
+    # Append list of values to list
     for song in song_list:
         song_data = get_song_data(song, spotify_data)
         if song_data is None:
-            print('Warning: {} does not exist in Spotify or in database'.format(song['name']))
+            print('Warning: {} not found in Spotify or database'.format(song['name']))
             continue
         song_vector = song_data[number_cols].values
         song_vectors.append(song_vector)
 
+        # Convert to single array and return mean
     song_matrix = np.array(list(song_vectors))
     return np.mean(song_matrix, axis=0)
 
 
-def flatten_dict_list(dict_list):
-    """
-    Utility function for flattening a list of dictionaries.
-    """
-
-    flattened_dict = defaultdict()
-    for key in dict_list[0].keys():
-        flattened_dict[key] = []
-
-    for dictionary in dict_list:
-        for key, value in dictionary.items():
-            flattened_dict[key].append(value)
-
-    return flattened_dict
-
-
 def recommend_songs(song_list, spotify_data, n_songs=10):
-    """
-    Recommends songs based on a list of previous songs that a user has listened to.
-    """
-
+    # Establishing metadata and numerical columns
     metadata_cols = ['track_name', 'artist_name']
     number_cols = ['valence', 'acousticness', 'danceability', 'duration_ms', 'energy', 'instrumentalness', 'liveness',
                    'loudness', 'speechiness', 'tempo']
-    song_dict = flatten_dict_list(song_list)
 
+    # Getting mean vector
     song_center = get_mean_vector(song_list, spotify_data)
+
+    # Dropping extra columns
     spotify_data = spotify_data.drop(['popularity', 'Unnamed: 0'], axis=1)
+
+    # Using KMeans to cluster data, fitting and adding labels to dataset
     X = spotify_data.select_dtypes(np.number)
     cluster_pipeline = Pipeline([('scaler', StandardScaler()), ('kmeans', KMeans(n_clusters=3))])
     cluster_pipeline.fit(X)
     cluster_labels = cluster_pipeline.predict(X)
     spotify_data['cluster'] = cluster_labels
+
+    # Scaling and transforming numerical columns of data and reshaped song center
     scaler = cluster_pipeline.steps[0][1]
     scaled_data = scaler.transform(spotify_data[number_cols])
     scaled_song_center = scaler.transform(song_center.reshape(1, -1))
+
+    # Computing cosine distance on transformed arrays
     distances = cdist(scaled_song_center, scaled_data, 'cosine')
+
+    # Return sorted list of top n indices
     index = list(np.argsort(distances)[:, :n_songs][0])
 
+    # Converting to DataFrame and returning track and artist name
     rec_songs = spotify_data.iloc[index]
-    rec_songs = rec_songs[~rec_songs['track_name'].isin(song_dict['name'])]
     df_recs = pd.DataFrame(rec_songs[metadata_cols])
     return df_recs
 
@@ -138,7 +127,9 @@ st.write('Generate song recommendations from DJ and producer Four Tet, '
 components.iframe("https://open.spotify.com/embed/playlist/2uzbATYxs9V8YQi5lf89WG", width=700, height=300)
 
 st.write('## How It Works')
-st.write('Fill in up to three songs and artist of your choice, or use the sidebar to adjust features.')
+st.write('Fill in up to three songs and artists of your choice, or use the sidebar to adjust audio features '
+         'on your own. You will be able to listen in your browser to the recommended songs! ')
+st.write('Tip: Try entering hip-hop, dance, R&B or jazz tracks - the playlist has plenty of them.')
 
 def user_input_features():
     danceability = st.sidebar.slider('Danceability', 0.000000, 0.980000, 0.000000, 0.01)
@@ -183,7 +174,7 @@ if button1:
         df3 = df3.append(df.loc[i])
         df3 = df3.drop(['Unnamed: 0', 'popularity'], axis=1)
     new_song_list = [{'name': df3.iloc[0]['track_name'], 'artist': df3.iloc[0]['artist_name']}]
-    new_song_recs = recommend_songs(new_song_list, df, 10)
+    new_song_recs = recommend_songs(new_song_list, df, 5)
     for i, j in new_song_recs.itertuples(index=False):
         embed_string = 'https://open.spotify.com/embed/track/'
         id_list = []
@@ -191,12 +182,12 @@ if button1:
             results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
             id_list.append(results['tracks']['items'][0]['id'])
         except IndexError:
-            pass
+            continue
         concat_list = [embed_string + k for k in id_list]
         try:
             components.iframe(concat_list[0], width=700, height=300)
         except IndexError:
-            pass
+            continue
 
 song_list = []
 title = st.text_input('Song #1')
@@ -211,7 +202,7 @@ song_list.append({'name': title3, 'artist': artist3})
 button2 = st.button('Go')
 if button2:
     try:
-        song_recs = recommend_songs(song_list, df, 10)
+        song_recs = recommend_songs(song_list, df, 5)
     except ValueError:
         st.markdown('**Song not found in Spotify, please try again**')
     for i, j in song_recs.itertuples(index=False):
@@ -221,12 +212,12 @@ if button2:
             results = sp.search(q='track: {} artist: {}'.format(i, j), limit=1)
             id_list.append(results['tracks']['items'][0]['id'])
         except IndexError:
-            pass
+            continue
         concat_list = [embed_string + k for k in id_list]
         try:
             components.iframe(concat_list[0], width=700, height=300)
         except IndexError:
-            pass
+            continue
 
 
 
@@ -263,3 +254,5 @@ st.markdown('**Tempo** is the overall estimated tempo of a track in beats per mi
 st.markdown('**Valence** is a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. '
             'Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with '
             'low valence sound more negative (e.g. sad, depressed, angry).')
+st.write('Tip: After setting your parameters, try adjusting just one or two to see if your results are different. '
+         'Energy has a surprisingly large effect on the results!')

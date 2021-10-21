@@ -1,0 +1,10 @@
+# Ignore system file
+.DS_store
+
+# Ignore cache (Spotipy token)
+.cache
+
+# Ignore checkpoints and cache folders
+/.ipynb_checkpoints
+/__pycache__
+/client

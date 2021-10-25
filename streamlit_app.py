@@ -9,7 +9,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 import plotly.graph_objects as go
-from collections import defaultdict
+#from collections import defaultdict
 from scipy.spatial.distance import cdist
 import time
 

@@ -13,8 +13,8 @@ import plotly.graph_objects as go
 from scipy.spatial.distance import cdist
 import time
 
-#cid = 'YOUR CLIENT ID'
-#secret = 'YOUR CLIENT SECRET'
+cid = st.secrets['client_id']
+secret = st.secrets['client_secret']
 client_credentials_manager = SpotifyClientCredentials(client_id=cid, client_secret=secret)
 sp = spotipy.Spotify(client_credentials_manager
 =

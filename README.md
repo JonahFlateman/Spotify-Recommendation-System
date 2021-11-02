@@ -50,6 +50,8 @@ Our recommendation system obtains data for one or multiple songs with either Spo
 
 In Streamlit the model can give recommendations in two ways. First a user has the option to adjust audio features manually using a sidebar, the app will take the nearest match for its input and provide the recommendation. A user may also enter up to three songs and the code will execute. In both cases the Spotify-embedded tracks will return and the user can listen in-app.
 
+[Access the Streamlit app here](https://share.streamlit.io/jonahflateman/spotify-recommendation-system/main)
+
 
 
 

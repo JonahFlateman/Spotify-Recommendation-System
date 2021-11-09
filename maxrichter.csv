@@ -1,0 +1,79 @@
+,track_name,album,artist_name,release_date,duration_ms,popularity,danceability,acousticness,energy,instrumentalness,liveness,loudness,speechiness,tempo,valence
+0,Quatuor pour la fin du temps (Quartet for the End of Time) (2008 - Remaster): Louange à l'éternité de Jésus,Messiaen: Quartet for the End of Time; Chronochromie,Olivier Messiaen,2008-09-08,420040,20,0.121,0.978,0.0238,0.91,0.0771,-28.614,0.04,95.821,0.03
+1,Expanding Electricity - Single Edit,Expanding Electricity,Kaitlyn Aurelia Smith,2020-03-12,336000,13,0.162,0.94,0.296,0.931,0.107,-13.56,0.035,83.969,0.118
+2,Peace Piece,Everybody Digs Bill Evans,Bill Evans,1959,404160,0,0.464,0.987,0.0266,0.879,0.0836,-20.338,0.0532,132.973,0.0659
+3,All the Extinct Animals,Landfall,Kronos Quartet,2018-02-16,170173,14,0.111,0.924,0.131,0.757,0.112,-16.93,0.0367,91.204,0.0381
+4,I Contain Multitudes,I Contain Multitudes,Bob Dylan,2020-04-17,276600,31,0.44,0.932,0.0837,0.000231,0.109,-19.491,0.0941,170.704,0.134
+5,Ellis Island for Two Pianos,"Minimal Piano Collection, Vol. X-XX",Jeroen van Veen & Friends,2010-09-01,185586,5,0.249,0.995,0.0533,0.952,0.165,-32.501,0.0347,138.063,0.461
+6,Mass for 5 Voices: VI. Agnus Dei,"Byrd: Infelix ego, Mass for 5 Voices & Motets",William Byrd,2014-11-04,184013,1,0.0979,0.994,0.0877,0.000946,0.117,-23.435,0.0466,79.566,0.0366
+7,Strobo Acceleration,Cobra And Phases Group Play Voltage In The Milky Night (Expanded Edition),Stereolab,1999,235680,15,0.454,0.000981,0.945,0.00178,0.261,-6.061,0.0529,148.071,0.352
+8,"Violin Sonata No. 2 in A Minor, BWV 1003: IV. Allegro","Bach: Sonatas and Partitas for Solo Violin, Vol. 1",Johann Sebastian Bach,2016-10-17,308973,11,0.259,0.994,0.0945,0.326,0.0458,-17.313,0.0545,91.827,0.718
+9,A Sunlit Room,A Sunlit Room,Maria Teriaeva,2020-03-17,220475,2,0.685,0.78,0.336,0.829,0.105,-14.804,0.0538,112.615,0.637
+10,Les Barricades mystérieuses,Baroque Conversations,David Greilsammer,2012-02-10,130653,35,0.153,0.982,0.0104,0.916,0.0894,-37.655,0.0426,130.524,0.275
+11,Rose Wreath Crown (For CW),The Sacrificial Code,Kali Malone,2019-06-28,626161,24,0.0987,0.716,0.000226,0.944,0.112,-25.503,0.0543,91.653,0.813
+12,"Handel: Serse, HWV 40, Act 1: ""Frondi tenere ... Ombra mai fu"" (Xerse)",Passion Jaroussky,Philippe Jaroussky,2019-10-25,252786,19,0.178,0.976,0.076,0.000256,0.115,-19.339,0.0498,75.108,0.0422
+13,Four of Five,Hasta El Cielo,Khruangbin,2019-07-12,257202,33,0.681,0.177,0.328,0.887,0.137,-13.03,0.12,82.243,0.685
+14,"Pièce d'Orgue in G Major, BWV 572 à 6","J.S. Bach: Alio modo - ""Passacaglia"" & Other Keyboard Works Transcribed for Viols",Johann Sebastian Bach,2005-11-09,343733,9,0.18,0.954,0.0646,0.877,0.119,-21.902,0.0432,116.333,0.039
+15,O Chiadain an Lo,The Reeling,Brighde Chaimbeul,2019-01-18,318146,0,0.16,0.451,0.0851,0.602,0.108,-11.782,0.0486,110.144,0.0318
+16,Symphony No.4 In G: 3. Ruhevoll (Poco adagio),Mahler: Symphony No.4,Gustav Mahler,1979-01-01,1372717,9,0.0803,0.812,0.0463,0.82,0.256,-24.841,0.038,82.072,0.0359
+17,TNT,TNT,Tortoise,1998-03-10,453026,38,0.576,0.211,0.494,0.782,0.59,-16.538,0.035,115.902,0.193
+18,Canticles of the Sky: I. Sky with Four Suns,The Wind in High Places,John Luther Adams,2015-01-01,264466,19,0.104,0.958,0.123,0.877,0.136,-15.678,0.0415,91.597,0.0271
+19,Sisask : Starry Sky Cycle Op.52 : 25. Ursa Minor [Peace],Sisask : Starry Sky Cycle,Urmas Sisask,1993-08-16,200840,17,0.459,0.99,0.0664,0.973,0.0933,-24.414,0.0517,131.464,0.0346
+20,garden,async,Ryuichi Sakamoto,2017-04-28,256203,14,0.142,0.901,0.282,0.847,0.0914,-18.429,0.0378,140.022,0.0384
+21,"O Lord, in thy wrath",GIBBONS: Choral and Organ Music,Orlando Gibbons,1996-01-31,229826,3,0.161,0.993,0.0441,0.565,0.0902,-26.637,0.0439,135.245,0.0383
+22,Evacuation,Chernobyl (Music from the Original TV Series),Hildur Guðnadóttir,2019-05-31,283991,33,0.146,0.642,0.237,0.977,0.099,-18.403,0.0373,76.716,0.0366
+23,"Prelude in E Minor, BWV 855 (Arr. Piano in B Minor by Alexander Siloti)",Johann Sebastian Bach,Johann Sebastian Bach,2018-09-07,180440,35,0.228,0.987,0.087,0.93,0.0855,-33.522,0.0338,134.343,0.0972
+24,"String Quartet in E flat major, Hob.III:80, Op.76 No.6: 2. Fantasia (Adagio)",Haydn: String Quartets Op. 76 Nos. 4-6,Franz Joseph Haydn,1989-10-05,489693,5,0.0733,0.945,0.0673,0.787,0.274,-24.879,0.0473,76.832,0.0374
+25,The River Curls Around The Town,Cold House,Hood,2001-11-11,205733,8,0.151,0.919,0.347,0.933,0.0978,-13.05,0.0376,180.198,0.0685
+26,"24 Preludes, Op.11, Part IV: No. 21 in B Flat Major",Scriabin: 24 Preludes - Sonatas 4 and 10,Alexander Scriabin,1997-04-07,107000,18,0.221,0.992,0.00193,0.956,0.0805,-43.209,0.0409,69.843,0.347
+27,Khöömei,STET,Guy Sigsworth,2019-05-17,114173,5,0.36,0.861,0.242,0.925,0.0987,-19.567,0.0399,123.682,0.0327
+28,A Hudson Cycle,The Glass Effect (The Music of Philip Glass & Others),Lavinia Meijer,2016-11-04,174506,15,0.386,0.99,0.046,0.937,0.0884,-27.857,0.0647,92.371,0.0882
+29,Rendering Intuitions,Born Again In The Voltage,Caterina Barbieri,2018-08-10,396000,20,0.0799,0.43,0.0369,0.803,0.11,-19.45,0.0393,83.424,0.03
+30,Plan & Elevation: IV. The Orangery,Plan & Elevation: IV. The Orangery,Caroline Shaw,2019-02-26,117749,0,0.44,0.92,0.141,0.265,0.215,-23.158,0.0596,116.967,0.183
+31,Ay That's Me,Mountain Moves,Deerhoof,2017-09-08,184119,2,0.454,0.192,0.933,0.00482,0.4,-5.143,0.0862,118.975,0.519
+32,#4,#N/A,Nisennenmondai,2016-04-01,399146,3,0.548,1.3e-05,0.461,0.81,0.621,-15.89,0.0648,106.008,0.0371
+33,Voce Simul,Aviary,Julia Holter,2018-10-26,394807,26,0.424,0.771,0.11,0.0239,0.0995,-17.167,0.0345,100.048,0.172
+34,Contritus,Caleb Burhans: Past Lives,Caleb Burhans,2019-03-08,893423,10,0.251,0.695,0.032,0.424,0.0885,-18.628,0.0408,158.24,0.0387
+35,Shemonmuanaye,Hailu Mergia & His Classical Instrument: Shemonmuanaye,Hailu Mergia,2013-06-25,399754,11,0.455,0.745,0.452,0.00057,0.0684,-7.883,0.0303,141.75,0.296
+36,carefree counter dronal,NTS Session 1,Autechre,2018-08-09,314082,12,0.646,0.874,0.808,0.593,0.123,-13.446,0.528,80.159,0.162
+37,Stabat Mater: 1. Stabat Mater,Pergolesi: Stabat Mater; Salve Regina,Giovanni Battista Pergolesi,1989-01-01,271400,38,0.172,0.873,0.0313,0.0113,0.104,-24.877,0.0395,88.21,0.0554
+38,Autowave,Ultraviolet,Kelly Moran,2018-11-02,189540,23,0.0923,0.793,0.358,0.874,0.0618,-12.195,0.0459,87.182,0.0326
+39,"Lachrimae ""Seven Tears"": I. Lachrimae Antiquae",Dowland: Lachrimae,John Dowland,2018-04-13,279146,14,0.11,0.834,0.0627,0.933,0.116,-22.487,0.039,91.61,0.0788
+40,Wires,Brazil,JFDR,2017-03-17,178175,0,0.633,0.605,0.663,0.142,0.0987,-18.789,0.065,137.974,0.0343
+41,Battlefield,The First - Original Soundtrack Vol. 1,Colin Stetson,2018-09-28,89236,11,0.11,0.941,0.085,0.856,0.0966,-24.994,0.035,85.672,0.133
+42,A vous Tristan,L'Amor de Lonh: Medieval Songs of Love and Loss,Ensemble Gilles Binchois,2010-10-26,264826,8,0.159,0.99,0.0626,0.0314,0.0907,-19.982,0.0429,77.337,0.0815
+43,Flamingo,Channels,Daniel Brandt,2018-10-12,306885,0,0.748,0.0409,0.584,0.818,0.266,-11.067,0.0623,114.997,0.841
+44,Suite en fa majeur: Prélude,Louis Couperin,Louis Couperin,2010-04-01,158400,2,0.287,0.78,0.412,0.586,0.0532,-17.14,0.0409,81.841,0.296
+45,"Pièce d'Orgue in G Major, BWV 572 à 6","J.S. Bach: Alio modo - ""Passacaglia"" & Other Keyboard Works Transcribed for Viols",Johann Sebastian Bach,2005-11-09,343733,9,0.18,0.954,0.0646,0.877,0.119,-21.902,0.0432,116.333,0.039
+46,Last Things Last,Systems / Layers,Rachel's,2003-10-07,212880,1,0.316,0.809,0.133,0.00924,0.105,-17.682,0.043,131.245,0.0664
+47,Une meeles,Muunduja,Maarja Nuut,2018-10-05,326983,0,0.231,0.958,0.135,0.0169,0.497,-18.016,0.0415,85.671,0.0383
+48,Poor Sucker,Double Negative,Low,2018-09-14,215965,0,0.411,0.965,0.474,0.365,0.102,-11.328,0.0335,80.064,0.0814
+49,Of Late,"Skempton: Well, well Cornelius",Howard Skempton,1996,44040,6,0.661,0.996,0.00276,0.973,0.14,-43.475,0.566,127.073,0.0
+50,Scrap,KIN,Mogwai,2018-08-31,170453,0,0.252,0.231,0.304,0.779,0.111,-16.683,0.0339,123.512,0.0394
+51,"Ack Varmeland, du skona",Wood Works,Traditional,2014-05-06,195746,21,0.197,0.954,0.0819,0.0945,0.103,-21.31,0.0469,94.67,0.0364
+52,"Prelude and Fugue in C sharp (WTK, Book II, No.3), BWV 872","Bach, J.S.: Das Wohltemperierte Klavier II",Johann Sebastian Bach,1986-12-04,237866,18,0.318,0.994,0.0982,0.906,0.245,-24.416,0.0412,142.401,0.599
+53,Parts,Parts,Ohmme,2018-08-24,300959,1,0.566,0.37,0.381,0.166,0.108,-14.654,0.0332,119.905,0.23
+54,"Believe, Beleft, Below",Seven Days of Falling,Esbjörn Svensson Trio,2003-09-22,291226,45,0.647,0.85,0.0452,0.779,0.0928,-21.198,0.0349,102.285,0.141
+55,Immortal Bach,Schola Cantorum: Sandvold - Nystedt - Jennefelt - Sæverud,Schola Cantorum,1996,340826,0,0.159,0.994,0.0202,0.963,0.0856,-34.458,0.0369,132.221,0.0302
+56,Fantasia 1 A3,Purcell: Fantasies For Viols,Henry Purcell,1996,166008,0,0.259,0.951,0.134,0.85,0.132,-19.618,0.0437,132.011,0.158
+57,"Kinderszenen, Op. 15: 7. Träumerei",Schumann: Kinderszenen; Kreisleriana,Robert Schumann,1984-01-01,175440,52,0.409,0.993,0.00218,0.901,0.0632,-42.236,0.052,129.924,0.325
+58,Why Are We Sleeping?,The Soft Machine (Remastered And Expanded),Soft Machine,1968,331880,30,0.387,0.34,0.501,0.837,0.345,-12.382,0.0323,110.902,0.552
+59,Dream 3 (in the midst of my life),From Sleep,Max Richter,2015-09-04,603600,41,0.134,0.891,0.0608,0.905,0.111,-23.145,0.04,79.508,0.0387
+60,Missa L'homme arme: Agnus Dei,"Josquin: Missa L'Homme Arme / Ave Maria / Absalon, Fili Mi",Josquin des Prez,1998-03-26,555800,6,0.0879,0.99,0.0607,0.0198,0.0837,-26.563,0.0511,51.331,0.0361
+61,Zoetrope,In A Beautiful Place Out In The Country,Boards of Canada,2000-11-27,318880,33,0.801,0.971,0.649,0.81,0.0886,-16.399,0.0636,160.045,0.228
+62,Octet,Octet - Music For A Large Ensemble - Violin Phase,Steve Reich,1980-09-01,1059306,13,0.509,0.953,0.509,0.895,0.302,-12.939,0.039,100.627,0.774
+63,"Dixit Dominus, HWV 232: Die Torrente in via bibet",Vivaldi: Gloria / Handel: Dixit Dominus,The Monteverdi Choir,2001-08-31,255693,40,0.126,0.975,0.018,0.281,0.246,-29.758,0.0461,70.483,0.0338
+64,Sept,511593,Electric Indigo,2018-03-16,380566,3,0.784,0.00719,0.619,0.906,0.602,-12.573,0.0566,130.975,0.262
+65,Arcadiana: VI. O Albion,The Twenty-Fifth Hour: The Chamber Music of Thomas Adès,Thomas Adès,2015-03-09,206680,25,0.165,0.843,0.0011,0.0919,0.113,-42.512,0.0508,78.232,0.0381
+66,Clearing,Ruins,Grouper,2014-10-28,281680,42,0.23,0.991,0.0432,0.932,0.105,-23.066,0.042,89.582,0.136
+67,Black Origami,Black Origami,Jlin,2017-05-19,270579,16,0.664,0.0017,0.886,0.539,0.07,-7.219,0.0463,117.683,0.558
+68,The Unanswered Question,Charles Ives: Symphony No.2,Charles Ives,1990-01-01,367506,12,0.0626,0.11,0.00968,0.894,0.251,-36.028,0.039,61.666,0.0383
+69,Sugar Baby,All Is Well,Sam Amidon,2008-02-04,324186,0,0.687,0.919,0.114,0.0478,0.109,-15.872,0.0358,119.341,0.194
+70,"Britten: 4 Sea Interludes from Peter Grimes, Op. 33a: I. Dawn","Britten: Spring Symphony, Four Sea Interludes (Peter Grimes)",Benjamin Britten,1986,222933,8,0.183,0.793,0.065,0.806,0.157,-28.248,0.04,63.587,0.0387
+71,An Intention,The Kid,Kaitlyn Aurelia Smith,2017-10-06,240586,7,0.284,0.214,0.366,0.183,0.105,-9.028,0.0313,131.507,0.107
+72,Tenebrae: 2.,"Golijov: Oceana, Tenebrae, 3 Songs",Osvaldo Golijov,2007-01-01,406346,0,0.168,0.897,0.0533,0.801,0.131,-26.562,0.0393,87.275,0.0387
+73,Mother Sky (from Deep End),Anthology (Remaster),CAN,1994,396306,0,0.456,0.00473,0.67,0.0961,0.117,-8.337,0.042,142.762,0.403
+74,"Gottes Zeit ist die allerbeste Zeit, BWV 106, ""Actus tragicus"": Sonatina (arr. G. Kurtag for piano 4 hands)",Bach Without Words,Johann Sebastian Bach,2015-11-06,143946,19,0.58,0.995,0.036,0.949,0.0945,-30.749,0.0576,74.556,0.109
+75,And Then It Rained,City Lake,Bing & Ruth,2015-11-13,292186,3,0.064,0.981,0.0256,0.899,0.0887,-22.433,0.0451,41.836,0.0276
+76,Lento,Howard Skempton: Lento - EP,Howard Skempton,2012-04-01,778133,16,0.174,0.98,0.0204,0.857,0.3,-20.373,0.0423,70.39,0.0348
+77,"Nun komm, der Heiden Heiland, BWV 659 (Arr. Busoni)",Brendel Plays Bach including The Italian Concerto & Chromatic Fantasy,Johann Sebastian Bach,1977-01-01,317840,13,0.465,0.995,0.0287,0.913,0.214,-28.931,0.0538,109.024,0.211

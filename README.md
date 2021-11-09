@@ -10,6 +10,8 @@ Spotify creators and artists rely on user interaction to increase traffic on the
 
 We will be using a 1700+ row dataset collected from the Spotify API and consisting of songs from a playlist from DJ and producer Four Tet, which can be found in the above CSV file. The dataset consists of descriptive metadata (track name, artist name) as well as numerical audio features which we will use for modeling (acousticness, danceability, duration, energy, instrumentalness, liveness, loudness, tempo and valence).
 
+We will test our models on two additional smaller playlists to evaluate its feasability with different-sized datasets - Spotify's ["Songs to Sing in the Shower"](https://github.com/JonahFlateman/capstone/blob/main/showersongs.csv) (200 rows) and Max Richter's ["Kitchen Playlist"](https://github.com/JonahFlateman/capstone/blob/main/maxrichter.csv) (78 rows).
+
 
 ## Navigating This Repository
 
@@ -53,8 +55,6 @@ We deploy the model using a Streamlit web app. In Streamlit the model can give r
 
 With accurate song recommendations from an artist's playlist, we increase traffic for the artist and better engage Spotify users in song selection. While the current model is deployed in a Streamlit app, it could be applied within Spotify's desktop and mobile apps for users to get direct song recommendations and connect with their favorite artists. While Spotify currently suggests similar artists or auto-plays tracks for users based on the current artists, a hybrid recommendation system should be able to allow for the user to discover new music while highlighting the artist's presence in these recommendations.
 
-### Model Evaluation and Future Work
+### Conclusions and Future Work
 
-
-## Conclusion
-
+Our model provides accurate playlist song recommendations with the 1700+ row dataset given input of any song in Spotify. Evaluating it on smaller playlists (200 and 78 rows respectively) yielded accuracies of 84% and 90% on untrained datasets. For future recommendation systems we will need to adjust how the model is grouped in clusters and tune it to accomodate playlists of different sizes. We used audio feature metrics to build our recommendation system, however Spotify does provide additional metrics such as popularity which could skew the data on future models. For larger playlists, idenfitying our most important features and removing certain features might be needed to increase accuracy, especially on more genre-specific playlists with closer song similarities.

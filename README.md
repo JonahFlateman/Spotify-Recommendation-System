@@ -30,7 +30,7 @@ We first access the Spotify API in order to extract playlist metadata. [Spotipy]
 
 We select a subset of our data containing the numerical audio features mentioned above. To accurately discern if a content-based recommendation system is viable for this dataset, we can cluster and visualize our data points in a two-dimensional space using KMeans to determine the optimal number of clusters. We scale our data and use dimensionality reduction to visualize the data points in a two-dimensional space. The below graphs show each song represented as a data point in three-cluster and two-cluster scatter plots.
 
-<img src="/images/threeclusters.png" width="400" height="300"/> <img src="/images/twoclusters.png" width="400" height="300"/>
+<img src="/images/threeclusters.png" width="400" height="400"/> <img src="/images/twoclusters.png" width="400" height="300"/>
 
 For this particular dataset, the three-cluster plot is optimal for our content-based recommendation system; however we can use the two-cluster plot to create a classifier to predict which song ends up in which cluster and the feature importances of this classification. Knowing this will help us determine the effects of this particular playlist on our recommendation system and how it might function with other playlist of different character and type.
 
